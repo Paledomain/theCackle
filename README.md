@@ -1,4 +1,4 @@
-# tThe Cackle: Mild Pain
+# The Cackle: Mild Pain
 Code Repository for action indie game "The Cackle: Mild Pain", as a backup to itch. If not down, can be found on the link https://paledomain.itch.io/the-cackle-mild-pain .
 
 ## Premise
