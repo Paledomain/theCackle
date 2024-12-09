@@ -12,3 +12,7 @@ Kaan Ünlü: All coding, animations, environmental art, additional level, sound 
 Asiye Erdöl: Music, sound and level design, project management
 
 Gizem Yetişkin: Menu and explosion visuals
+
+## Notes
+
+This is mostly a solo project: This repository is setup so that source code and possibility for downloading as an executable is maintained even when the main website used for updating the game (itch) is down. The Gitignore might be busted as the project wasn't co-developed through it, so please let me know if i can fix anything!
