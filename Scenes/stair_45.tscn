@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://u5306yppbvcc"]
+
+[node name="stair45" type="AnimatableBody2D"]
+
+[node name="CollisionPolygon2D" type="CollisionPolygon2D" parent="."]
+modulate = Color(1, 1, 1, 0.25)
+polygon = PackedVector2Array(4, 4, -4, -4, -4, -3, 3, 4)
+one_way_collision = true

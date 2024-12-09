@@ -1,0 +1,97 @@
+[gd_scene load_steps=15 format=3 uid="uid://dvpw6yu0corrp"]
+
+[ext_resource type="Script" path="res://Scripts/bar_gate.gd" id="1_bv1kt"]
+[ext_resource type="Texture2D" uid="uid://d21wwxqmshj2w" path="res://Assets/Images/bar-Sheet.png" id="1_dawbx"]
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fp7wf"]
+atlas = ExtResource("1_dawbx")
+region = Rect2(0, 0, 16, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_dh354"]
+atlas = ExtResource("1_dawbx")
+region = Rect2(16, 0, 16, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_t0flu"]
+atlas = ExtResource("1_dawbx")
+region = Rect2(32, 0, 16, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3abgi"]
+atlas = ExtResource("1_dawbx")
+region = Rect2(48, 0, 16, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_viq4o"]
+atlas = ExtResource("1_dawbx")
+region = Rect2(64, 0, 16, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_unbco"]
+atlas = ExtResource("1_dawbx")
+region = Rect2(80, 0, 16, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_gvfew"]
+atlas = ExtResource("1_dawbx")
+region = Rect2(96, 0, 16, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_scjep"]
+atlas = ExtResource("1_dawbx")
+region = Rect2(112, 0, 16, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rdsew"]
+atlas = ExtResource("1_dawbx")
+region = Rect2(128, 0, 16, 64)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_fgybb"]
+atlas = ExtResource("1_dawbx")
+region = Rect2(144, 0, 16, 64)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_ufbrl"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fp7wf")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_dh354")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_t0flu")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3abgi")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_viq4o")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_unbco")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_gvfew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_scjep")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rdsew")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_fgybb")
+}],
+"loop": false,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_6ufmg"]
+size = Vector2(16, 64)
+
+[node name="barGate" type="RigidBody2D"]
+collision_mask = 255
+freeze = true
+script = ExtResource("1_bv1kt")
+
+[node name="AnimatedSprite2D" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_ufbrl")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -64)
+shape = SubResource("RectangleShape2D_6ufmg")

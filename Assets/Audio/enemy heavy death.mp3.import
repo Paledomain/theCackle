@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://e00cbk6tucbv"
+path="res://.godot/imported/enemy heavy death.mp3-ace431647f76b92b4942458e908ef950.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/enemy heavy death.mp3"
+dest_files=["res://.godot/imported/enemy heavy death.mp3-ace431647f76b92b4942458e908ef950.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dfxl4pur8jjl3"
+path="res://.godot/imported/mech damage.mp3-dc4c6563714b687a1b3d24c819f8dfe2.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/mech damage.mp3"
+dest_files=["res://.godot/imported/mech damage.mp3-dc4c6563714b687a1b3d24c819f8dfe2.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

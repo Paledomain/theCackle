@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://ctls4phj4cj83"
+path="res://.godot/imported/mc death.mp3-4d37dd922031a57012025dee8970e4e0.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/mc death.mp3"
+dest_files=["res://.godot/imported/mc death.mp3-4d37dd922031a57012025dee8970e4e0.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

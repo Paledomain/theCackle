@@ -1,0 +1,124 @@
+[gd_scene load_steps=19 format=3 uid="uid://c5cq2am2v1w2t"]
+
+[ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_bey8d"]
+[ext_resource type="Texture2D" uid="uid://dxdi0b5wtf41e" path="res://Assets/Images/mc fire.png" id="1_stnhf"]
+[ext_resource type="PackedScene" uid="uid://db7p4ntoosgfy" path="res://Scenes/explosion.tscn" id="2_on1lc"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bv65i"]
+radius = 3.99984
+height = 11.9995
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_twebv"]
+atlas = ExtResource("1_stnhf")
+region = Rect2(0, 0, 10, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_4nffy"]
+atlas = ExtResource("1_stnhf")
+region = Rect2(10, 0, 10, 6)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_uuliu"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_twebv")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_4nffy")
+}],
+"loop": true,
+"name": &"pew",
+"speed": 10.0
+}]
+
+[sub_resource type="Curve" id="Curve_07k5k"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.34, 0), -0.00504469, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_wshqk"]
+curve = SubResource("Curve_07k5k")
+
+[sub_resource type="Gradient" id="Gradient_um8dk"]
+offsets = PackedFloat32Array(0, 0.311475)
+colors = PackedColorArray(0.835294, 0.913725, 0.556863, 1, 0.6, 0.898039, 0.313726, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_7r631"]
+gradient = SubResource("Gradient_um8dk")
+
+[sub_resource type="Curve" id="Curve_ri7sl"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.273333, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_srdbh"]
+curve = SubResource("Curve_ri7sl")
+
+[sub_resource type="Curve" id="Curve_0freg"]
+_data = [Vector2(0, 1), 0.0, 0.0, 0, 0, Vector2(0.466667, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_3loa7"]
+curve = SubResource("Curve_0freg")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_c0rc5"]
+particle_flag_disable_z = true
+inherit_velocity_ratio = 0.5
+direction = Vector3(-1, 0, 0)
+spread = 5.0
+initial_velocity_min = 161.29
+initial_velocity_max = 569.74
+gravity = Vector3(0, 5, 0)
+scale_max = 3.0
+scale_curve = SubResource("CurveTexture_3loa7")
+color = Color(0.980392, 1, 0.913725, 1)
+color_ramp = SubResource("GradientTexture1D_7r631")
+alpha_curve = SubResource("CurveTexture_wshqk")
+emission_curve = SubResource("CurveTexture_srdbh")
+turbulence_enabled = true
+turbulence_noise_strength = 0.0
+turbulence_noise_scale = 1.0
+collision_mode = 1
+collision_friction = 0.0
+collision_bounce = 0.0
+
+[sub_resource type="Gradient" id="Gradient_05qwf"]
+offsets = PackedFloat32Array(0, 0.253247, 0.61039)
+colors = PackedColorArray(1, 1, 1, 1, 0.511111, 0.511111, 0.511111, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_li2qe"]
+gradient = SubResource("Gradient_05qwf")
+fill = 1
+fill_from = Vector2(0.495413, 0.490826)
+
+[node name="bullet" type="Area2D"]
+collision_layer = 4
+collision_mask = 9
+script = ExtResource("1_bey8d")
+explosion_scene = ExtResource("2_on1lc")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -1.56189
+shape = SubResource("CapsuleShape2D_bv65i")
+
+[node name="projectile" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_uuliu")
+animation = &"pew"
+autoplay = "pew"
+frame_progress = 0.179186
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+self_modulate = Color(1, 1.5, 1, 1)
+amount = 100
+process_material = SubResource("ParticleProcessMaterial_c0rc5")
+trail_enabled = true
+trail_lifetime = 0.1
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+scale = Vector2(1.15625, 1.15625)
+color = Color(1, 1, 0.623529, 1)
+energy = 2.0
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_li2qe")
+
+[node name="pullBackPos" type="Node2D" parent="."]
+position = Vector2(-35, 0)
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

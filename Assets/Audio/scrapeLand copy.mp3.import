@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c0xkphni15xt0"
+path="res://.godot/imported/scrapeLand copy.mp3-3cca6e84d1baa0c1fc931d9d941a123b.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/scrapeLand copy.mp3"
+dest_files=["res://.godot/imported/scrapeLand copy.mp3-3cca6e84d1baa0c1fc931d9d941a123b.mp3str"]
+
+[params]
+
+loop=true
+loop_offset=0.0
+bpm=120.0
+beat_count=3
+bar_beats=4

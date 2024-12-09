@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://dt6gmpw7raesa"
+path="res://.godot/imported/enemy mild death.mp3-bccd6a6df61d753aad9bc23bbda49367.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/enemy mild death.mp3"
+dest_files=["res://.godot/imported/enemy mild death.mp3-bccd6a6df61d753aad9bc23bbda49367.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

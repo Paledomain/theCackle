@@ -1,0 +1,125 @@
+[gd_scene load_steps=16 format=3 uid="uid://317qwygkywit"]
+
+[ext_resource type="Script" path="res://Scripts/checkpoint.gd" id="1_pynlm"]
+[ext_resource type="AudioStream" uid="uid://ck1aeurffdx48" path="res://Assets/Audio/googledebunkers.mp3" id="2_i7tsw"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_y3ehy"]
+size = Vector2(24, 32)
+
+[sub_resource type="Curve" id="Curve_kvu56"]
+_data = [Vector2(0.186667, 0.230769), 0.0, 0.0, 0, 0, Vector2(1, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_ksqmx"]
+curve = SubResource("Curve_kvu56")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_3tjep"]
+lifetime_randomness = 0.44
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(8, 1, 1)
+direction = Vector3(0, -20, 0)
+spread = 0.0
+initial_velocity_min = 53.76
+initial_velocity_max = 53.76
+gravity = Vector3(0, 0, 0)
+linear_accel_min = -61.51
+linear_accel_max = 25.81
+scale_curve = SubResource("CurveTexture_ksqmx")
+turbulence_enabled = true
+turbulence_noise_strength = 6.74
+turbulence_noise_scale = 0.0
+turbulence_noise_speed_random = 4.0
+
+[sub_resource type="Gradient" id="Gradient_50w6t"]
+colors = PackedColorArray(0.811688, 0.811688, 0.811688, 1, 0, 0, 0, 0)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lo7ae"]
+gradient = SubResource("Gradient_50w6t")
+width = 8
+height = 16
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.25)
+fill_to = Vector2(0.5, 1)
+metadata/_snap_enabled = true
+metadata/_snap_count = 8
+
+[sub_resource type="Curve" id="Curve_ce872"]
+_data = [Vector2(0, 0), 0.0, 0.0, 0, 0, Vector2(0.252577, 1), 0.0, 0.0, 0, 0, Vector2(0.494845, 0), 0.0, 0.0, 0, 0]
+point_count = 3
+
+[sub_resource type="CurveTexture" id="CurveTexture_ku48q"]
+curve = SubResource("Curve_ce872")
+
+[sub_resource type="Curve" id="Curve_w30tn"]
+_data = [Vector2(0, 0.274725), 0.0, 0.0, 0, 0, Vector2(0.536082, 0.571428), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_howh0"]
+curve = SubResource("Curve_w30tn")
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_43aux"]
+particle_flag_disable_z = true
+emission_shape = 3
+emission_box_extents = Vector3(1, 1, 1)
+direction = Vector3(0, -1, 0)
+spread = 4.865
+initial_velocity_min = 108.7
+initial_velocity_max = 395.66
+gravity = Vector3(0, 0, 0)
+scale_curve = SubResource("CurveTexture_howh0")
+alpha_curve = SubResource("CurveTexture_ku48q")
+turbulence_enabled = true
+
+[sub_resource type="Gradient" id="Gradient_rb6mt"]
+offsets = PackedFloat32Array(0, 0.707792)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_u3hg6"]
+gradient = SubResource("Gradient_rb6mt")
+width = 24
+height = 24
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
+[node name="checkpoint" type="Area2D"]
+modulate = Color(2, 2, 2, 1)
+collision_mask = 15
+script = ExtResource("1_pynlm")
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+position = Vector2(0, -16)
+shape = SubResource("RectangleShape2D_y3ehy")
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+process_material = SubResource("ParticleProcessMaterial_3tjep")
+texture = SubResource("GradientTexture2D_lo7ae")
+trail_enabled = true
+
+[node name="HealParticles" type="GPUParticles2D" parent="."]
+emitting = false
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_43aux")
+texture = SubResource("GradientTexture2D_lo7ae")
+one_shot = true
+preprocess = 0.1
+explosiveness = 0.8
+trail_enabled = true
+trail_lifetime = 1.0
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_u3hg6")
+
+[node name="birthPt" type="Marker2D" parent="."]
+position = Vector2(0, -26)
+
+[node name="woaw" type="AudioStreamPlayer2D" parent="."]
+stream = ExtResource("2_i7tsw")
+volume_db = -10.0
+bus = &"VFX"
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

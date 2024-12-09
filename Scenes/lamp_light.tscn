@@ -1,0 +1,23 @@
+[gd_scene load_steps=4 format=3 uid="uid://dyc744e4wd2we"]
+
+[ext_resource type="Script" path="res://Scripts/lamp_light.gd" id="1_vh5bl"]
+
+[sub_resource type="Gradient" id="Gradient_sm2yg"]
+offsets = PackedFloat32Array(0, 0.688312)
+colors = PackedColorArray(1, 1, 1, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_lkoql"]
+gradient = SubResource("Gradient_sm2yg")
+use_hdr = true
+fill = 1
+fill_from = Vector2(0.5, 0.5)
+metadata/_snap_enabled = true
+
+[node name="lampLight" type="PointLight2D"]
+position = Vector2(292, -64)
+scale = Vector2(1.65625, 1.65625)
+color = Color(0.894655, 0.704826, 0.442575, 1)
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_lkoql")
+script = ExtResource("1_vh5bl")
+energyMin = 2.0

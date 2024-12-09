@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://50wob2h2booe"
+path="res://.godot/imported/hyena boss laugh.mp3-43bd2803b1189beb04785fb37e89ec1f.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/hyena boss laugh.mp3"
+dest_files=["res://.godot/imported/hyena boss laugh.mp3-43bd2803b1189beb04785fb37e89ec1f.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

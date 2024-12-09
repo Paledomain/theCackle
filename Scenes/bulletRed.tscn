@@ -1,0 +1,132 @@
+[gd_scene load_steps=18 format=3 uid="uid://ir45vubbru7d"]
+
+[ext_resource type="Script" path="res://Scripts/bullet.gd" id="1_jfmcf"]
+[ext_resource type="PackedScene" uid="uid://db7p4ntoosgfy" path="res://Scenes/explosion.tscn" id="2_0yrec"]
+[ext_resource type="Texture2D" uid="uid://xrr7dpkdpgqa" path="res://Assets/Images/enemy fire.png" id="3_5fpox"]
+
+[sub_resource type="CapsuleShape2D" id="CapsuleShape2D_bv65i"]
+radius = 3.99984
+height = 11.9995
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_e52lc"]
+atlas = ExtResource("3_5fpox")
+region = Rect2(0, 0, 8, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_rwx5e"]
+atlas = ExtResource("3_5fpox")
+region = Rect2(8, 0, 8, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_3tfk1"]
+atlas = ExtResource("3_5fpox")
+region = Rect2(16, 0, 8, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_h2th8"]
+atlas = ExtResource("3_5fpox")
+region = Rect2(24, 0, 8, 6)
+
+[sub_resource type="AtlasTexture" id="AtlasTexture_08lxs"]
+atlas = ExtResource("3_5fpox")
+region = Rect2(32, 0, 8, 6)
+
+[sub_resource type="SpriteFrames" id="SpriteFrames_8ly6m"]
+animations = [{
+"frames": [{
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_e52lc")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_rwx5e")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_3tfk1")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_h2th8")
+}, {
+"duration": 1.0,
+"texture": SubResource("AtlasTexture_08lxs")
+}],
+"loop": true,
+"name": &"default",
+"speed": 10.0
+}]
+
+[sub_resource type="Curve" id="Curve_elkes"]
+_data = [Vector2(0, 0.989011), 0.0, 0.0, 0, 0, Vector2(0.623711, 0), 0.0, 0.0, 0, 0]
+point_count = 2
+
+[sub_resource type="CurveTexture" id="CurveTexture_pyqqd"]
+curve = SubResource("Curve_elkes")
+
+[sub_resource type="Gradient" id="Gradient_ltixp"]
+colors = PackedColorArray(1, 0.341, 0.388, 1, 0.106, 0.106, 0.106, 1)
+
+[sub_resource type="GradientTexture1D" id="GradientTexture1D_8e1bi"]
+gradient = SubResource("Gradient_ltixp")
+use_hdr = true
+
+[sub_resource type="ParticleProcessMaterial" id="ParticleProcessMaterial_v6rfa"]
+particle_flag_disable_z = true
+direction = Vector3(-1, 0, 0)
+spread = 4.459
+initial_velocity_min = 65.22
+initial_velocity_max = 95.65
+gravity = Vector3(0, 0, 0)
+scale_min = 0.5
+color_ramp = SubResource("GradientTexture1D_8e1bi")
+alpha_curve = SubResource("CurveTexture_pyqqd")
+turbulence_enabled = true
+turbulence_noise_strength = 20.0
+turbulence_noise_scale = 6.154
+turbulence_noise_speed_random = 4.0
+
+[sub_resource type="Gradient" id="Gradient_05qwf"]
+offsets = PackedFloat32Array(0, 0.253247, 0.61039)
+colors = PackedColorArray(1, 1, 1, 1, 0.511111, 0.511111, 0.511111, 1, 0, 0, 0, 1)
+
+[sub_resource type="GradientTexture2D" id="GradientTexture2D_li2qe"]
+gradient = SubResource("Gradient_05qwf")
+fill = 1
+fill_from = Vector2(0.495413, 0.490826)
+
+[node name="bullet" type="Area2D"]
+modulate = Color(2, 1, 1, 1)
+collision_layer = 4
+collision_mask = 11
+script = ExtResource("1_jfmcf")
+explosion_scene = ExtResource("2_0yrec")
+explosion_name = "redBoom"
+explosion_particle = 2
+
+[node name="CollisionShape2D" type="CollisionShape2D" parent="."]
+rotation = -1.56189
+shape = SubResource("CapsuleShape2D_bv65i")
+
+[node name="projectile" type="AnimatedSprite2D" parent="."]
+sprite_frames = SubResource("SpriteFrames_8ly6m")
+frame_progress = 0.615064
+
+[node name="GPUParticles2D" type="GPUParticles2D" parent="."]
+self_modulate = Color(1, 1.5, 1, 1)
+position = Vector2(-1, 0)
+amount = 50
+process_material = SubResource("ParticleProcessMaterial_v6rfa")
+lifetime = 0.3
+trail_enabled = true
+trail_lifetime = 0.2
+
+[node name="RayCast2D" type="RayCast2D" parent="."]
+position = Vector2(-21, 0)
+scale = Vector2(2.12867, -1.17817)
+target_position = Vector2(13, 0)
+collision_mask = 65535
+
+[node name="PointLight2D" type="PointLight2D" parent="."]
+visible = false
+scale = Vector2(1.15625, 1.15625)
+color = Color(1, 0.74579, 0.657441, 1)
+energy = 2.0
+shadow_enabled = true
+texture = SubResource("GradientTexture2D_li2qe")
+
+[connection signal="body_entered" from="." to="." method="_on_body_entered"]

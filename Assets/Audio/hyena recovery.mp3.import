@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c2qvs0ix6qnfq"
+path="res://.godot/imported/hyena recovery.mp3-b10627c8c17f56727d273c4a693c8fb0.mp3str"
+
+[deps]
+
+source_file="res://Assets/Audio/hyena recovery.mp3"
+dest_files=["res://.godot/imported/hyena recovery.mp3-b10627c8c17f56727d273c4a693c8fb0.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
